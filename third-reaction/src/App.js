@@ -12,6 +12,9 @@ in college!*/
 
 import './App.css';
 import React, {useState, useEffect} from "react";
+import axios from 'axios';
+
+const baseRequest = 'http://www.randomnumberapi.com/api/v1.0/randomredditnumber?min=1&max=100&count=0';
 
 function App(){
     //first arg: the var that will be updated. Second arg: the function that will update it.
@@ -19,14 +22,30 @@ function App(){
     //handy reference to the second arg function that updates the state of the first.
     //useState is really there to say "Here is the state of this variable, and a function to further update it"
     const [count, setCount] = useState(0);
+    const [num, setNum] = useState(0);
+    const [loading, setLoading] = useState(true);
 
+    //useEffect is loaded each time the page is rendered. useState deals with state, useEffect deals with the lifecycle of the page.
+    //One way in which useEffect might prove useful is if you wanted to go fetch some data from an API as soon as the page loads.
+    useEffect((num, loading)=>{
+      axios.get(baseRequest)
+      .then(res => {
+        setLoading(false);
+        setNum(res.data[0]);
+        console.log(res.data);
+        console.log(loading);
+      })
+    }, [])
+    
     return (
       <div className="App">
+         <p>{loading ? "Loading..." : "Your random number is: " + num}</p>
         <h1>Welcome to the World's Greatest Counter!</h1>
-        <button onClick={this.handleClick.bind(this)}>Click Me</button>
+        <button onClick={() => setCount(count + 1)}>Add</button>
         <br/>
+        <button onClick={() => setCount(count - 1)}>Subtract</button>
         <br/>
-        <h1>Here is the current count: {this.state.count}</h1>
+        <h1>{count}</h1>
       </div>
     );
   }
