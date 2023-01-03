@@ -24,28 +24,56 @@ function App(){
     const [count, setCount] = useState(0);
     const [num, setNum] = useState(0);
     const [loading, setLoading] = useState(true);
-
+    const[savedVals, saveVal] = useState([]);
     //useEffect is loaded each time the page is rendered. useState deals with state, useEffect deals with the lifecycle of the page.
     //One way in which useEffect might prove useful is if you wanted to go fetch some data from an API as soon as the page loads.
+    //Let's do that!
     useEffect((num, loading)=>{
       axios.get(baseRequest)
       .then(res => {
         setLoading(false);
         setNum(res.data[0]);
-        console.log(res.data);
-        console.log(loading);
       })
     }, [])
-    
+    console.log(savedVals);
+
+    const addVal = () => {
+      saveVal([...savedVals, {
+        id: savedVals.length,
+        value: count
+      }])
+    }
+
+    const removeVal = () => {
+      var newVals = [...savedVals];
+      
+    }
+
     return (
       <div className="App">
-         <p>{loading ? "Loading..." : "Your random number is: " + num}</p>
+         <p>{loading ? "Loading Number..." : "Your random number is: " + num}</p>
         <h1>Welcome to the World's Greatest Counter!</h1>
         <button onClick={() => setCount(count + 1)}>Add</button>
         <br/>
         <button onClick={() => setCount(count - 1)}>Subtract</button>
         <br/>
+        <h1>Would you like to divide or multiply your current count by the random value?</h1>
+        <button onClick={() => setCount(count * num)}>Multiply</button>
+        <br/>
+        <button onClick={() => setCount(count / num)}>Divide</button>
         <h1>{count}</h1>
+        <button onClick={addVal}>Save Count</button>
+        <br/>
+        <h3>Would you like to delete a saved item?</h3>
+        <button onClick={removeVal}>Delete Item</button>
+        <h1>Saved Vals:</h1>
+        <ul>
+          {
+            savedVals.map(savedNum => {
+              return <li key={savedNum.id}>{savedNum.value}</li>
+            })
+          }
+        </ul>
       </div>
     );
   }
