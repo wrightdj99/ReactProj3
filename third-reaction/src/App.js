@@ -35,7 +35,6 @@ function App(){
         setNum(res.data[0]);
       })
     }, [])
-    console.log(savedVals);
 
     const addVal = () => {
       saveVal([...savedVals, {
@@ -44,30 +43,36 @@ function App(){
       }])
     }
 
-    const removeVal = () => {
-      var newVals = [...savedVals];
-      
+    const delVal = () => {
+      const tempArray = [...savedVals];
+      tempArray.pop();
+      saveVal(tempArray);
     }
 
     return (
       <div className="App">
-         <p>{loading ? "Loading Number..." : "Your random number is: " + num}</p>
         <h1>Welcome to the World's Greatest Counter!</h1>
+        <h1>{count}</h1>
         <button onClick={() => setCount(count + 1)}>Add</button>
         <br/>
         <button onClick={() => setCount(count - 1)}>Subtract</button>
         <br/>
         <h1>Would you like to divide or multiply your current count by the random value?</h1>
+        <br/>
+        <h2>{loading ? "Loading Number..." : "Your random number is: " + num}</h2>
         <button onClick={() => setCount(count * num)}>Multiply</button>
         <br/>
         <button onClick={() => setCount(count / num)}>Divide</button>
-        <h1>{count}</h1>
-        <button onClick={addVal}>Save Count</button>
         <br/>
-        <h3>Would you like to delete a saved item?</h3>
-        <button onClick={removeVal}>Delete Item</button>
+        <br/>
+        <br/>
+        <br/>
+        <button onClick={addVal}>Save Current Count</button>
+        <br/>
+        <button onClick={delVal}>Delete Saved Count</button>
+        <br/>
         <h1>Saved Vals:</h1>
-        <ul>
+        <ul className='ulStyle'>
           {
             savedVals.map(savedNum => {
               return <li key={savedNum.id}>{savedNum.value}</li>

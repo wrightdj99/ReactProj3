@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-color: azure;
 }
 
 .App-logo {
@@ -26,6 +28,10 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.ulStyle{
+  list-style-type: none;
 }
 
 @keyframes App-logo-spin {
