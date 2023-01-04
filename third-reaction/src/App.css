@@ -32,6 +32,7 @@
 
 .ulStyle{
   list-style-type: none;
+  font-size: 25px;
 }
 
 @keyframes App-logo-spin {
