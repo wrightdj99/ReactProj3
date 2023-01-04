@@ -11,3 +11,6 @@ Finally, the user can save counts at any time in a list at the bottom of the pag
 Further comments can be seen in the code.
 
 P.S. Special thanks to James Kozlowski for this API! 
+
+![image](https://user-images.githubusercontent.com/60994655/210630419-70c6ddc0-75a2-4230-8d58-f1437ca8953d.png)
+
