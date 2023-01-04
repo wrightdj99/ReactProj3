@@ -53,23 +53,23 @@ function App(){
       <div className="App">
         <h1>Welcome to the World's Greatest Counter!</h1>
         <h1>{count}</h1>
-        <button onClick={() => setCount(count + 1)}>Add</button>
+        <button className="buttonStyle" onClick={() => setCount(count + 1)}>Add</button>
         <br/>
-        <button onClick={() => setCount(count - 1)}>Subtract</button>
+        <button className="buttonStyle" onClick={() => setCount(count - 1)}>Subtract</button>
         <br/>
         <h1>Would you like to divide or multiply your current count by the random value?</h1>
         <br/>
         <h2>{loading ? "Loading Number..." : "Your random number is: " + num}</h2>
-        <button onClick={() => setCount(count * num)}>Multiply</button>
+        <button className="buttonStyle" onClick={() => setCount(count * num)}>Multiply</button>
         <br/>
-        <button onClick={() => setCount(count / num)}>Divide</button>
-        <br/>
-        <br/>
+        <button className="buttonStyle" onClick={() => setCount(count / num)}>Divide</button>
         <br/>
         <br/>
-        <button onClick={addVal}>Save Current Count</button>
         <br/>
-        <button onClick={delVal}>Delete Saved Count</button>
+        <br/>
+        <button className="buttonStyle" onClick={addVal}>Save Current Count</button>
+        <br/>
+        <button className="buttonStyle" onClick={delVal}>Delete Saved Count</button>
         <br/>
         <h1>Saved Vals:</h1>
         <ul className='ulStyle'>
